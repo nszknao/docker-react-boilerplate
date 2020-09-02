@@ -1,0 +1,21 @@
+FROM node:alpine
+
+# 無ければ作成される
+WORKDIR /app
+
+# packages.jsonに変更があったときだけ、yarn installが走るようにキャッシュさせる
+COPY package.json .
+RUN yarn install
+
+COPY . .
+
+CMD ["yarn", "start"];
+
+# build → runの方法
+# docker build -t nszknao/udemy-k8s-simpleweb:latest .
+# docker run -d -p 8080:8080 nszknao/udemy-k8s-simpleweb:latest
+# docker stop [container-id]
+
+# docker-composeの場合
+# docker-compose up --build
+# docker-compose down

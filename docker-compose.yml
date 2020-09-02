@@ -1,0 +1,24 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3031:3000"
+    volumes:
+      # ローカルマシンのnode_modulesに向かないようにする（無いから）
+      - /app/node_modules
+      - .:/app
+    stdin_open: true
+  # テスト用のコンテナ
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules
+      - .:/app
+    command: ["yarn", "test"]
+
+# docker-compose up
