@@ -17,3 +17,11 @@ jobs:
       - checkout
       - run: sudo pip install --upgrade awsebcli
       - run: eb deploy
+workflows:
+  build-and-test:
+    jobs:
+      - build
+      - test
+      - deploy:
+          requires:
+            - test
