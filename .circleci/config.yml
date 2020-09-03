@@ -2,15 +2,11 @@
 # ref: https://circleci.com/docs/ja/2.0/deployment-integrations/#aws
 version: 2.1
 jobs:
-  build:
+  build-test:
     machine: true
     steps:
       - checkout
       - run: docker build -t nszknao/react-boilerplate -f Dockerfile.dev .
-  test:
-    machine: true    
-    steps:
-      - checkout
       - run: docker run nszknao/react-boilerplate yarn test --coverage --watchAll=false
   deploy:
     docker:
@@ -22,10 +18,7 @@ jobs:
 workflows:
   build-and-test:
     jobs:
-      - build
-      - test:
-          requires:
-            - build
+      - build-test
       - deploy:
           requires:
-            - test
+            - build-test
