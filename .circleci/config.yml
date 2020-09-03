@@ -1,3 +1,5 @@
+# AWSはIAMのキーとシークレットを特定の名前で環境変数として登録しておけばよい
+# ref: https://circleci.com/docs/ja/2.0/deployment-integrations/#aws
 version: 2.1
 jobs:
   build:
@@ -5,4 +7,13 @@ jobs:
     steps:
       - checkout
       - run: docker build -t nszknao/react-boilerplate -f Dockerfile.dev .
+  test:
+    machine: true    
+    steps:
       - run: docker run nszknao/react-boilerplate yarn test --coverage --watchAll=false
+  deploy:
+    machine: true
+    steps:
+      - checkout
+      - run: sudo pip install --upgrade awsebcli
+      - run: eb deploy
