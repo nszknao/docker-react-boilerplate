@@ -5,4 +5,4 @@ jobs:
     steps:
       - checkout
       - run: docker build -t nszknao/react-boilerplate -f Dockerfile.dev .
-      - run: docker run nszknao/react-boilerplate yarn test -- --coverage
+      - run: docker run nszknao/react-boilerplate yarn test --coverage --watchAll=false
