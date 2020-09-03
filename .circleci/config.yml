@@ -10,6 +10,7 @@ jobs:
   test:
     machine: true    
     steps:
+      - checkout
       - run: docker run nszknao/react-boilerplate yarn test --coverage --watchAll=false
   deploy:
     machine: true
