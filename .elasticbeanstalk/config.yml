@@ -1,6 +1,10 @@
-# CicleCiで使いgithubで管理する必要があるため、globalだけ切り出した
-# application_nameが最低限あればできるっぽい
-# ref: https://qiita.com/mikamix/items/31849dc94a3e39575240
+branch-defaults:
+  master:
+    environment: DockerReact-env
+environment-defaults:
+  DockerReact-env:
+    branch: null
+    repository: null
 global:
   application_name: docker-react
   default_ec2_keyname: null
