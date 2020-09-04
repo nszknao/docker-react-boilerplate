@@ -1,6 +1,6 @@
-FROM node:alpine as builder
+FROM node:alpine
 WORKDIR '/app'
-COPY package.json .
+COPY package*.json ./
 RUN yarn
 COPY . .
 RUN yarn build
@@ -9,5 +9,5 @@ RUN yarn build
 FROM nginx
 # Elastic BeanstalkはExposeしたポートを自動でマッピングしてくれる
 EXPOSE 80
-COPY --from=builder /app/build /usr/share/nginx/html
+COPY --from=0 /app/build /usr/share/nginx/html
 # 起動のコマンドは必要ない
