@@ -7,7 +7,7 @@ environment-defaults:
     branch: null
     repository: null
 global:
-  application_name: react-boilerplate
+  application_name: docker-react
   branch: null
   default_ec2_keyname: null
   default_platform: Docker
