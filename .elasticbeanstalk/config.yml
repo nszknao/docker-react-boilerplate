@@ -1,6 +1,6 @@
 branch-defaults:
   master:
-    environment: null
+    environment: DockerReact-env
     group_suffix: null
 environment-defaults:
   DockerReact-env:
@@ -16,7 +16,7 @@ global:
   instance_profile: null
   platform_name: null
   platform_version: null
-  profile: eb-cli
+  # profile: eb-cli
   repository: null
   sc: git
   workspace_type: Application
